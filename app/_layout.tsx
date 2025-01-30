@@ -1,20 +1,23 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
-import { Slot } from "expo-router";
+import { Slot, useRouter } from "expo-router";
+import { useEffect } from "react";
+import { View, StyleSheet } from "react-native";
 
 export default function RootLayout() {
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    router.replace("/(auth)/getStartedScreen");
   }, []);
-
-  useEffect(() => {
-    if (isMounted) {
-      router.replace("/(tabs)/homeScreen");
-    }
-  }, [isMounted, router]);
-
-  return <Slot />;
+  return (
+    <View style={styles.container}>
+      <Slot />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#1A1A1A",
+  },
+});

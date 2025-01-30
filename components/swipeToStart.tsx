@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -17,7 +17,7 @@ type Props = {
   onStart: () => void;
 };
 
-const SwipeToStart = ({ onStart }: Props) => {
+const SwipeToStart: React.FC<Props> = ({ onStart }: Props) => {
   const distance = useRef(0);
   const translationX = useRef(new Animated.Value(0)).current;
   const hasTriggered = useRef(false);

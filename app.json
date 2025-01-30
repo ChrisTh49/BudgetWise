@@ -9,12 +9,13 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "backgroundColor": "#1A1A1A"
     },
     "android": {
+      "backgroundColor": "#1A1A1A",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#1A1A1A"
+        "foregroundImage": "./assets/images/adaptive-icon.png"
       }
     },
     "web": {

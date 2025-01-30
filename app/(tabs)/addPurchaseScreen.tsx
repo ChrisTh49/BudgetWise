@@ -2,7 +2,7 @@ import CustomAppLoading from "@/components/appLoading";
 import { useFonts } from "expo-font";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function AddPurchaseScreen() {
   const [fontsLoaded] = useFonts({
     "Manrope-Regular": require("../../assets/fonts/Manrope-Regular.ttf"),
     "Manrope-Bold": require("../../assets/fonts/Manrope-Bold.ttf"),
@@ -13,7 +13,7 @@ export default function HomeScreen() {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
+      <Text style={styles.title}>Add Purchase</Text>
     </View>
   );
 }
