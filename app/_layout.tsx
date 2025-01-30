@@ -1,11 +1,20 @@
-import { Stack } from "expo-router";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
+import { Slot } from "expo-router";
 
 export default function RootLayout() {
-  return (
-    <>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" options={{ headerShown: false }} />
-      </Stack>
-    </>
-  );
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      router.replace("/(tabs)/homeScreen");
+    }
+  }, [isMounted, router]);
+
+  return <Slot />;
 }

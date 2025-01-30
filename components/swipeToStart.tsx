@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   PanResponder,
   LayoutChangeEvent,
 } from "react-native";
+import { useFonts } from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 
 const SLIDER_WIDTH = 50;
@@ -18,41 +19,62 @@ type Props = {
 
 const SwipeToStart = ({ onStart }: Props) => {
   const distance = useRef(0);
+  const translationX = useRef(new Animated.Value(0)).current;
+  const hasTriggered = useRef(false);
+
+  let [fontsLoaded] = useFonts({
+    "Manrope-Regular": require("../assets/fonts/Manrope-Regular.ttf"),
+    "Manrope-Bold": require("../assets/fonts/Manrope-Bold.ttf"),
+    // Añade más fuentes aquí si es necesario
+  });
+
+  useEffect(() => {
+    const listener = translationX.addListener(({ value }) => {
+      if (value >= distance.current && !hasTriggered.current) {
+        hasTriggered.current = true;
+        onStart();
+      }
+    });
+
+    return () => {
+      translationX.removeListener(listener);
+    };
+  }, [onStart]);
 
   const onLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     distance.current = width - SLIDER_WIDTH - SLIDER_MARGIN * 2;
   };
-  const translationX = useRef(new Animated.Value(0)).current;
 
   const release = () => {
     Animated.spring(translationX, {
       toValue: 0,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {
+      hasTriggered.current = false; // Resetear la bandera cuando vuelva a la posición inicial
+    });
   };
 
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (_, gestureState) => {
-        if (gestureState.dx > 0) {
+        const newTranslation = gestureState.dx;
+
+        if (newTranslation <= 0) {
           translationX.setValue(0);
-        } else if (gestureState.dx < -distance.current) {
-          translationX.setValue(-distance.current);
+        } else if (newTranslation >= distance.current) {
+          translationX.setValue(distance.current);
         } else {
-          translationX.setValue(gestureState.dx);
+          translationX.setValue(newTranslation);
         }
       },
-      onPanResponderRelease: (_, gestureState) => {
-        if (gestureState.dx < -distance.current) {
-          onStart();
-        }
-
+      onPanResponderRelease: () => {
         release();
       },
     })
   ).current;
+
   return (
     <View style={styles.container} onLayout={onLayout}>
       <Text style={styles.text}>Get Started</Text>
@@ -87,8 +109,6 @@ const styles = StyleSheet.create({
     color: "#FCFCFC",
     fontSize: 22,
     fontWeight: "600",
-    alignItems: "flex-start",
-    justifyContent: "center",
     marginHorizontal: 50,
     fontFamily: "Manrope-Regular",
   },
@@ -97,8 +117,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     borderRadius: 44,
-    width: 50,
-    height: 50,
+    width: SLIDER_WIDTH,
+    height: SLIDER_WIDTH,
     position: "absolute",
     left: 10,
   },
