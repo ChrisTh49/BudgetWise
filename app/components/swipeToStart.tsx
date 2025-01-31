@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
+import CustomAppLoading from "./appLoading";
 
 const SLIDER_WIDTH = 50;
 const SLIDER_MARGIN = 12;
@@ -23,10 +24,13 @@ const SwipeToStart: React.FC<Props> = ({ onStart }: Props) => {
   const hasTriggered = useRef(false);
 
   let [fontsLoaded] = useFonts({
-    "Manrope-Regular": require("../assets/fonts/Manrope-Regular.ttf"),
-    "Manrope-Bold": require("../assets/fonts/Manrope-Bold.ttf"),
-    // Añade más fuentes aquí si es necesario
+    "Manrope-Regular": require("../../assets/fonts/Manrope-Regular.ttf"),
+    "Manrope-Bold": require("../../assets/fonts/Manrope-Bold.ttf"),
   });
+
+  if (!fontsLoaded) {
+    return <CustomAppLoading />;
+  }
 
   useEffect(() => {
     const listener = translationX.addListener(({ value }) => {

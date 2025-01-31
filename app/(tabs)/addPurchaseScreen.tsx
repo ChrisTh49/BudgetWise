@@ -1,6 +1,6 @@
-import CustomAppLoading from "@/components/appLoading";
 import { useFonts } from "expo-font";
 import { View, Text, StyleSheet } from "react-native";
+import CustomAppLoading from "../components/appLoading";
 
 export default function AddPurchaseScreen() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   title: {
     color: "#FCFCFC",
     fontSize: 30,
-    fontWeight: "bold",
     fontFamily: "Manrope-Regular",
   },
 });

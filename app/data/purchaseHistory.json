@@ -1,0 +1,58 @@
+[
+    {
+        "price": "500$",
+        "installments": 12,
+        "completedInstallments": 4,
+        "cardType": "VISA",
+        "paymentMethod": "credit",
+        "description": "This is a description of the purchase, detailing the product and services involved."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    },
+    {
+        "price": "250$",
+        "installments": 6,
+        "completedInstallments": 6,
+        "cardType": "MasterCard",
+        "paymentMethod": "debit",
+        "description": "This is another purchase description with more details."
+    }
+]

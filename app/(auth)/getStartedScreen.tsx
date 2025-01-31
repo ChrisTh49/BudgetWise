@@ -1,10 +1,10 @@
-import SwipeToStart from "@/components/swipeToStart";
 import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
-import CustomAppLoading from "@/components/appLoading";
 import { useState } from "react";
 import * as Animatable from "react-native-animatable"; // Importamos la librería
+import CustomAppLoading from "../components/appLoading";
+import SwipeToStart from "../components/swipeToStart";
 
 export default function GetStartedScreen() {
   const router = useRouter();
