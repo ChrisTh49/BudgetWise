@@ -3,8 +3,8 @@ import HomeScreen from "./homeScreen";
 import AddPurchaseScreen from "./addPurchaseScreen";
 import ProfileScreen from "./profileScreen";
 import { Tabs } from "expo-router";
-import { TabBar } from "@/components/tabBar";
 import { StyleSheet } from "react-native";
+import { TabBar } from "../components/tabBar";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +14,7 @@ export default function TabsLayout() {
     {
       route: "AddPurchaseScreen",
       label: "Add Purchase",
-      icon: "add-circle-outline",
+      icon: "add",
       component: AddPurchaseScreen,
     },
     {
